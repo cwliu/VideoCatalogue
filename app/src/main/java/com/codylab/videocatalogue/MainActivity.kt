@@ -1,9 +1,14 @@
 package com.codylab.videocatalogue
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.codylab.videocatalogue.core.VideoRepository
+import dagger.android.DaggerActivity
+import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : DaggerActivity() {
+
+    @Inject
+    lateinit var videoRepository: VideoRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
