@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.codylab.videocatalogue.R
+import com.codylab.videocatalogue.core.extension.loadImageFromUrl
 import com.codylab.videocatalogue.core.model.Item
 import kotlinx.android.synthetic.main.fragment_detail.*
 
@@ -39,7 +40,15 @@ class DetailFragment : Fragment() {
 
         val item = arguments?.getParcelable<Item>(ITEM_KEY)
 
-        // TODO
         name.text = item?.title
+        item?.images?.landscape?.let {
+            image.loadImageFromUrl(it)
+        }
+        year.text = item?.year?.toString()
+        description.text = item?.description
+
+        closeButton.setOnClickListener {
+            activity?.supportFragmentManager?.popBackStack()
+        }
     }
 }

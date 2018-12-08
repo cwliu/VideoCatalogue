@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="image_radius">8dp</dimen>
+    <dimen name="icon_size">80dp</dimen>
+    <dimen name="default_margin">16dp</dimen>
+    <dimen name="cover_image_portrait_width">220dp</dimen>
+    <dimen name="cover_image_portrait_height">400dp</dimen>
+    <dimen name="cover_image_landscape_width">400dp</dimen>
+    <dimen name="cover_image_landscape_height">220dp</dimen>
 </resources>

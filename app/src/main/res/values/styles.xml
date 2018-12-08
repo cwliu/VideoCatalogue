@@ -1,5 +1,4 @@
 <resources>
-
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
@@ -8,14 +7,18 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="TextHeader1">
-        <item name="android:textSize">24sp</item>
-        <item name="android:lineSpacingExtra">4.8sp</item>
+    <style name="Text">
+        <item name="android:textColor">@color/primaryTextColor</item>
+    </style>
+    <style name="Text.Hero">
+        <item name="android:textSize">56sp</item>
     </style>
 
-    <style name="TextBodyPrimary">
-        <item name="android:textSize">16sp</item>
-        <item name="android:lineSpacingExtra">8sp</item>
+    <style name="Text.Header">
+        <item name="android:textSize">36sp</item>
     </style>
 
+    <style name="Text.BodyPrimary">
+        <item name="android:textSize">22sp</item>
+    </style>
 </resources>
