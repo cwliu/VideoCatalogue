@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import com.codylab.videocatalogue.R
 import com.codylab.videocatalogue.core.extension.getViewModel
 import com.codylab.videocatalogue.core.extension.observeNonNull
+import com.codylab.videocatalogue.main.DetailFragmentNavigator
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_catalogue.*
 import javax.inject.Inject
@@ -53,6 +54,9 @@ class CatalogueFragment : DaggerFragment() {
     private fun setUpCatalogueRecyclerView() {
         context?.let {
             catalogueAdapter = CatalogueAdapter(it)
+            catalogueAdapter.onItemClickListener = { item ->
+                (activity as DetailFragmentNavigator).openDetailFragment(item)
+            }
             catalogueRecyclerView.adapter = catalogueAdapter
             catalogueRecyclerView.layoutManager = LinearLayoutManager(it)
         }

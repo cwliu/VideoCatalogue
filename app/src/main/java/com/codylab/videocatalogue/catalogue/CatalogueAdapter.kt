@@ -8,11 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.codylab.videocatalogue.R
 import com.codylab.videocatalogue.core.model.Category
+import com.codylab.videocatalogue.core.model.Item
 import kotlinx.android.synthetic.main.item_category.view.*
 
-class CatalogueAdapter(val context: Context) : RecyclerView.Adapter<CatalogueAdapter.ViewHolder>() {
+class CatalogueAdapter(private val context: Context) : RecyclerView.Adapter<CatalogueAdapter.ViewHolder>() {
 
     val categories = mutableListOf<Category>()
+
+    var onItemClickListener: ((Item) -> Unit)? = null
 
     override fun getItemCount(): Int = categories.size
 
@@ -24,9 +27,10 @@ class CatalogueAdapter(val context: Context) : RecyclerView.Adapter<CatalogueAda
         viewHolder.bind(categories[position])
     }
 
-    class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind(category: Category) {
             val adapter = ItemListAdapter(view.context)
+            adapter.onItemClickListener = onItemClickListener
             adapter.items.addAll(category.items)
 
             itemView.categoryName.text = category.category

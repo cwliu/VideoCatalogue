@@ -7,12 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import com.codylab.videocatalogue.R
 import com.codylab.videocatalogue.core.extension.loadImageFromUrl
+import com.codylab.videocatalogue.core.extension.onDebounceClick
 import com.codylab.videocatalogue.core.model.Item
 import kotlinx.android.synthetic.main.item_video.view.*
 
 class ItemListAdapter(private val context: Context) : RecyclerView.Adapter<ItemListAdapter.ViewHolder>() {
 
     val items = mutableListOf<Item>()
+
+    var onItemClickListener: ((Item) -> Unit)? = null
 
     override fun getItemCount(): Int = items.size
 
@@ -24,7 +27,7 @@ class ItemListAdapter(private val context: Context) : RecyclerView.Adapter<ItemL
         viewHolder.bind(items[position])
     }
 
-    class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind(item: Item) {
             // TODO portrait or landscape
             // TODO placeholder image
@@ -34,6 +37,10 @@ class ItemListAdapter(private val context: Context) : RecyclerView.Adapter<ItemL
                 item.images.portrait,
                 view.resources.getDimension(R.dimen.image_radius).toInt()
             )
+
+            itemView.onDebounceClick {
+                onItemClickListener?.invoke(item)
+            }
         }
     }
 }
