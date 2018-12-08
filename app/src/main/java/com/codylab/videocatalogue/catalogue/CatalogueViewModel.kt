@@ -17,6 +17,8 @@ class CatalogueViewModel @Inject constructor(
     fun setup() {
 
         launch {
+            // TODO Add loading state
+            // TODO Add error handling
             val categories = catalogueRepository.getCategories()
             uiModelLiveData.value = CatalogueUIModel(categories)
         }

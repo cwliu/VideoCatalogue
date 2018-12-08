@@ -3,15 +3,15 @@ package com.codylab.videocatalogue.catalogue
 
 import android.arch.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.codylab.videocatalogue.R
 import com.codylab.videocatalogue.core.extension.getViewModel
 import com.codylab.videocatalogue.core.extension.observeNonNull
-import com.codylab.videocatalogue.core.extension.showToast
-import com.codylab.videocatalogue.main.DetailFragmentNavigator
 import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.fragment_catalogue.*
 import javax.inject.Inject
 
 
@@ -21,6 +21,8 @@ class CatalogueFragment : DaggerFragment() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: CatalogueViewModel
+
+    private lateinit var catalogueAdapter: CatalogueAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,15 +38,23 @@ class CatalogueFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.uiModelLiveData.observeNonNull(this) { uiModel ->
-            this@CatalogueFragment.context?.showToast(uiModel.categories[0].category)
+        setUpCatalogueRecyclerView()
+        observeUI()
+    }
 
-            val item = uiModel.categories[0].items[0]
-            (activity as DetailFragmentNavigator).openDetailFragment(item)
+    private fun observeUI() {
+        viewModel.uiModelLiveData.observeNonNull(this) { uiModel ->
+            catalogueAdapter.categories.clear()
+            catalogueAdapter.categories.addAll(uiModel.categories)
+            catalogueAdapter.notifyDataSetChanged()
         }
     }
 
-    private fun setUpCatalogueRecycylerView() {
-        activity
+    private fun setUpCatalogueRecyclerView() {
+        context?.let {
+            catalogueAdapter = CatalogueAdapter(it)
+            catalogueRecyclerView.adapter = catalogueAdapter
+            catalogueRecyclerView.layoutManager = LinearLayoutManager(it)
+        }
     }
 }
