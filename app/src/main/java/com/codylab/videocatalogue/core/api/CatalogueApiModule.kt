@@ -1,4 +1,4 @@
-package com.codylab.videocatalogue.core
+package com.codylab.videocatalogue.core.api
 
 import com.codylab.videocatalogue.BuildConfig
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory

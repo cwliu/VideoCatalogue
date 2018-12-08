@@ -1,4 +1,4 @@
-package com.codylab.videocatalogue.core
+package com.codylab.videocatalogue.core.api
 
 import com.codylab.videocatalogue.core.model.Category
 import kotlinx.coroutines.Dispatchers
