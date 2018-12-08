@@ -1,8 +1,10 @@
-package com.codylab.foodie.core.dagger.viewmodel
+package com.codylab.videocatalogue.core.dagger.viewmodel
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.codylab.videocatalogue.catalogue.CatalogueViewModel
+import com.codylab.videocatalogue.core.viewmodel.AppViewModelFactory
+import com.codylab.videocatalogue.detail.DetailViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -17,4 +19,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(CatalogueViewModel::class)
     abstract fun bindCatalogueViewModel(viewModel: CatalogueViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DetailViewModel::class)
+    abstract fun bindDetailViewModel(viewModel: DetailViewModel): ViewModel
 }

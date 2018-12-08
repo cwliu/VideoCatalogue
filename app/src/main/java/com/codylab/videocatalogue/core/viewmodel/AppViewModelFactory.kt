@@ -1,4 +1,4 @@
-package com.codylab.foodie.core.dagger.viewmodel
+package com.codylab.videocatalogue.core.viewmodel
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
