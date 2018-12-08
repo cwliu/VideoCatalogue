@@ -8,6 +8,7 @@ import com.codylab.videocatalogue.utils.TestObserver
 import com.codylab.videocatalogue.utils.testObserver
 import com.nhaarman.mockito_kotlin.whenever
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
@@ -35,9 +36,10 @@ class CatalogueViewModelTest {
 
     private lateinit var testObserver: TestObserver<CatalogueUIModel>
 
+    @ExperimentalCoroutinesApi
     @Before
     fun setUp() {
-        whenever(dispatchManager.main).thenReturn(Dispatchers.Default)
+        whenever(dispatchManager.main).thenReturn(Dispatchers.Unconfined)
         viewModel = CatalogueViewModel(catalogueRepository, dispatchManager)
         testObserver = viewModel.uiModelLiveData.testObserver()
     }
