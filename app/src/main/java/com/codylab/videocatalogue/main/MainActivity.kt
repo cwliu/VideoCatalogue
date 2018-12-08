@@ -15,8 +15,7 @@ class MainActivity : AppCompatActivity(), DetailFragmentNavigator {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment, CatalogueFragment())
-                .addToBackStack(null)
+                .add(R.id.fragment, CatalogueFragment())
                 .commit()
         }
     }

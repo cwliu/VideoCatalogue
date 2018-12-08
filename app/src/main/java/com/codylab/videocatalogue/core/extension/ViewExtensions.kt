@@ -12,3 +12,11 @@ fun View.onDebounceClick(action: (Any) -> Unit) {
         .debounce(500, TimeUnit.MILLISECONDS)
         .subscribe(action, { ignored -> })
 }
+
+fun View.setVisibility(isVisible: Boolean) {
+    visibility = if (isVisible) {
+        View.VISIBLE
+    } else {
+        View.GONE
+    }
+}

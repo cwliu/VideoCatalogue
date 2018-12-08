@@ -10,7 +10,7 @@ import com.codylab.videocatalogue.R
 
 fun ImageView.loadImageFromUrl(url: String, radius: Int = 0) {
     var options = RequestOptions()
-        .placeholder(R.drawable.ic_synchronize)
+        .placeholder(R.drawable.ic_image_black_24dp)
 
     if (radius > 0) {
         options = options.transforms(CenterCrop(), RoundedCorners(radius))

@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import com.codylab.videocatalogue.R
 import com.codylab.videocatalogue.core.extension.getViewModel
 import com.codylab.videocatalogue.core.extension.observeNonNull
+import com.codylab.videocatalogue.core.extension.setVisibility
+import com.codylab.videocatalogue.core.extension.showToast
 import com.codylab.videocatalogue.main.DetailFragmentNavigator
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_catalogue.*
@@ -29,7 +31,7 @@ class CatalogueFragment : DaggerFragment() {
         super.onCreate(savedInstanceState)
 
         viewModel = getViewModel(viewModelFactory)
-        viewModel.setup()
+        viewModel.onLoad()
     }
 
     override fun onCreateView(
@@ -43,15 +45,31 @@ class CatalogueFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setUpUIEvents()
         setUpCatalogueRecyclerView()
         observeUI()
     }
 
+    private fun setUpUIEvents() {
+        swiperefresh.setOnRefreshListener {
+            swiperefresh.isRefreshing = false
+            viewModel.onSwipeRefresh()
+        }
+    }
     private fun observeUI() {
         viewModel.uiModelLiveData.observeNonNull(this) { uiModel ->
-            catalogueAdapter.categories.clear()
-            catalogueAdapter.categories.addAll(uiModel.categories)
-            catalogueAdapter.notifyDataSetChanged()
+
+            uiModel.categories?.let {
+                catalogueAdapter.categories.clear()
+                catalogueAdapter.categories.addAll(it)
+                catalogueAdapter.notifyDataSetChanged()
+            }
+
+            progressBar.setVisibility(uiModel.isLoading)
+            errorView.setVisibility(uiModel.hasError)
+            uiModel.message?.getDataIfNotHandled()?.let {
+                this@CatalogueFragment.showToast(it)
+            }
         }
     }
 
