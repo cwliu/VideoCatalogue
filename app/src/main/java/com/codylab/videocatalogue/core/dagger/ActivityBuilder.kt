@@ -1,7 +1,7 @@
 package com.codylab.videocatalogue.core.dagger
 
-import com.codylab.videocatalogue.CatalogueFragment
-import com.codylab.videocatalogue.MainActivity
+import com.codylab.videocatalogue.catalogue.CatalogueFragment
+import com.codylab.videocatalogue.main.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

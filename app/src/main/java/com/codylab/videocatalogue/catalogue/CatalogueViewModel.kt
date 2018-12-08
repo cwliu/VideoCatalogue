@@ -1,4 +1,4 @@
-package com.codylab.videocatalogue
+package com.codylab.videocatalogue.catalogue
 
 import android.arch.lifecycle.MutableLiveData
 import com.codylab.videocatalogue.core.api.CatalogueRepository

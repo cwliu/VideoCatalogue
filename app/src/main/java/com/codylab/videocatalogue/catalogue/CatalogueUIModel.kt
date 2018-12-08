@@ -1,4 +1,4 @@
-package com.codylab.videocatalogue
+package com.codylab.videocatalogue.catalogue
 
 import com.codylab.videocatalogue.core.model.Category
 
