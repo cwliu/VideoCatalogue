@@ -22,9 +22,8 @@ class MainActivity : AppCompatActivity(), DetailFragmentNavigator {
 
     override fun openDetailFragment(item: Item) {
         val fragment = DetailFragment.newInstance(item)
-        // TODO shared transition element, animation
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment, fragment)
+            .add(R.id.fragment, fragment)
             .addToBackStack(null)
             .commit()
     }
