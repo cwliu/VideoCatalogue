@@ -1,6 +1,7 @@
 package com.codylab.videocatalogue.core.dagger
 
 import android.app.Application
+import com.codylab.videocatalogue.core.CatalogueApiModule
 import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
@@ -11,7 +12,8 @@ import javax.inject.Singleton
 @Component(
     modules = [
         AndroidSupportInjectionModule::class,
-        ActivityBuilder::class
+        ActivityBuilder::class,
+        CatalogueApiModule::class
     ]
 )
 interface AppComponent : AndroidInjector<DaggerApplication> {
