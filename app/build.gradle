@@ -99,6 +99,7 @@ dependencies {
     testImplementation "org.mockito:mockito-inline:$mockitoInlineVersion"
     testImplementation "com.nhaarman:mockito-kotlin-kt1.1:$mockitoKotlinVersion"
     testImplementation "android.arch.core:core-testing:$aacVersion"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$mockWebServerVersion"
 
     androidTestImplementation "androidx.test:runner:$testRunnerVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCore"

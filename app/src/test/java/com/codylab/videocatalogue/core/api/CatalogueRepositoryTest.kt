@@ -1,10 +1,10 @@
 package com.codylab.videocatalogue.core.api
 
-import com.codylab.videocatalogue.TestUtils
+import com.codylab.videocatalogue.utils.TestDataUtils
 import com.nhaarman.mockito_kotlin.whenever
-import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
+import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
@@ -19,9 +19,9 @@ class CatalogueRepositoryTest {
     @Test
     fun getCategories() = runBlocking {
         // When
-        val expectedCategories = TestUtils.getSampleCategories()
+        val expectedCategories = TestDataUtils.getSampleCategories()
         val deferredCategories = async { expectedCategories }
-        whenever(catalogueAPI.getVideos()).thenReturn(deferredCategories)
+        whenever(catalogueAPI.getCategories()).thenReturn(deferredCategories)
         val catalogueRepository = CatalogueRepository(catalogueAPI)
 
         // Given

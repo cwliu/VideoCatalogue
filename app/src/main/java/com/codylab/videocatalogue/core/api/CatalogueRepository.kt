@@ -13,7 +13,7 @@ class CatalogueRepository @Inject constructor(
 
     suspend fun getCategories(): List<Category> {
         return withContext(Dispatchers.IO) {
-            catalogueAPI.getVideos().await()
+            catalogueAPI.getCategories().await()
         }
     }
 }

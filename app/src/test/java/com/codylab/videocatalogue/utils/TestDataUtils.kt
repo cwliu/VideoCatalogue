@@ -1,10 +1,10 @@
-package com.codylab.videocatalogue
+package com.codylab.videocatalogue.utils
 
 import com.codylab.videocatalogue.core.model.Category
 import com.codylab.videocatalogue.core.model.Images
 import com.codylab.videocatalogue.core.model.Item
 
-class TestUtils {
+class TestDataUtils {
     companion object {
         fun getSampleCategories() = listOf(
             Category(
@@ -13,7 +13,7 @@ class TestUtils {
                         "A bright young yeti finds something he thought didn't exist—a human.",
                         Images(
                             "https://s3-ap-southeast-2.amazonaws.com/video-catalogue/images/smallfoot-portrait.jpg",
-                            "\"https://s3-ap-southeast-2.amazonaws.com/video-catalogue/images/smallfoot-landscape.jpg\""
+                            "https://s3-ap-southeast-2.amazonaws.com/video-catalogue/images/smallfoot-landscape.jpg"
                         ),
                         "Smallfoot",
                         2018
@@ -22,7 +22,7 @@ class TestUtils {
                         "King T'Challa returns home from America to Wakanda.",
                         Images(
                             "https://s3-ap-southeast-2.amazonaws.com/video-catalogue/images/black-panther-portrait.jpg",
-                            "\"https://s3-ap-southeast-2.amazonaws.com/video-catalogue/images/black-panther-portrait.jpg\""
+                            "https://s3-ap-southeast-2.amazonaws.com/video-catalogue/images/black-panther-portrait.jpg"
                         ),
                         "Black Panther",
                         2018
