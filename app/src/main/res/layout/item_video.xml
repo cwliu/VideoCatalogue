@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--TODO dimen-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              tools:ignore="UseCompoundDrawables">
+
+    <ImageView
+            android:id="@+id/image"
+            android:layout_width="110dp"
+            android:layout_height="200dp"
+            android:layout_margin="16dp"
+            tools:ignore="ContentDescription"/>
+
+    <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextBodyPrimary"
+            tools:text="Toy Story"/>
+
+</LinearLayout>

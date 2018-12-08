@@ -1,6 +1,7 @@
 package com.codylab.videocatalogue.catalogue
 
 import android.content.Context
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -23,9 +24,14 @@ class CatalogueAdapter(val context: Context) : RecyclerView.Adapter<CatalogueAda
         viewHolder.bind(categories[position])
     }
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind(category: Category) {
+            val adapter = ItemListAdapter(view.context)
+            adapter.items.addAll(category.items)
+
             itemView.categoryName.text = category.category
+            itemView.items.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
+            itemView.items.adapter = adapter
         }
     }
 }
