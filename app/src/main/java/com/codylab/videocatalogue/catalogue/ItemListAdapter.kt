@@ -11,7 +11,12 @@ import com.codylab.videocatalogue.core.extension.onDebounceClick
 import com.codylab.videocatalogue.core.model.Item
 import kotlinx.android.synthetic.main.item_video.view.*
 
-class ItemListAdapter(private val context: Context) : RecyclerView.Adapter<ItemListAdapter.ViewHolder>() {
+enum class ImageOrientation {
+    Portrait, Landscape
+}
+
+class ItemListAdapter(private val context: Context,
+                      val imageOrientation: ImageOrientation = ImageOrientation.Portrait) : RecyclerView.Adapter<ItemListAdapter.ViewHolder>() {
 
     val items = mutableListOf<Item>()
 
@@ -29,12 +34,22 @@ class ItemListAdapter(private val context: Context) : RecyclerView.Adapter<ItemL
 
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind(item: Item) {
-            // TODO portrait or landscape
-            // TODO placeholder image
-            // TODO dimen
             itemView.title.text = item.title
+
+            val imageUrl = if (imageOrientation == ImageOrientation.Portrait) {
+                itemView.image.layoutParams.width = view.resources.getDimension(R.dimen.cover_image_portrait_width).toInt()
+                itemView.image.layoutParams.height = view.resources.getDimension(R.dimen.cover_image_portrait_height).toInt()
+
+                item.images.portrait
+            } else {
+                itemView.image.layoutParams.width = view.resources.getDimension(R.dimen.cover_image_landscape_width).toInt()
+                itemView.image.layoutParams.height = view.resources.getDimension(R.dimen.cover_image_landscape_height).toInt()
+
+                item.images.landscape
+            }
+
             itemView.image.loadImageFromUrl(
-                item.images.portrait,
+                imageUrl,
                 view.resources.getDimension(R.dimen.image_radius).toInt()
             )
 

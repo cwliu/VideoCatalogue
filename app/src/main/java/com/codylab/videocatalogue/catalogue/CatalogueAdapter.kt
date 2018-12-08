@@ -24,12 +24,19 @@ class CatalogueAdapter(private val context: Context) : RecyclerView.Adapter<Cata
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.bind(categories[position])
+        viewHolder.bind(categories[position], position == 0)
     }
 
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        fun bind(category: Category) {
-            val adapter = ItemListAdapter(view.context)
+        fun bind(category: Category, isFirstRow: Boolean) {
+
+            val imageOrientation = if (isFirstRow) {
+                ImageOrientation.Landscape
+            } else {
+                ImageOrientation.Portrait
+            }
+
+            val adapter = ItemListAdapter(view.context, imageOrientation)
             adapter.onItemClickListener = onItemClickListener
             adapter.items.addAll(category.items)
 
