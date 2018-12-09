@@ -5,6 +5,8 @@
               android:layout_height="match_parent"
               android:background="@color/white"
               android:orientation="vertical"
+              android:clickable="true"
+              android:focusable="true"
               tools:context=".detail.DetailFragment">
 
     <LinearLayout android:layout_width="match_parent"
@@ -17,7 +19,7 @@
                 android:layout_weight="1"
                 android:layout_margin="@dimen/default_margin"
                 android:layout_gravity="center_vertical"
-                style="@style/Text.Hero"
+                style="@style/Text.Header"
                 tools:text="@tools:sample/full_names"/>
 
         <ImageView
@@ -25,6 +27,7 @@
                 android:layout_width="@dimen/icon_size"
                 android:layout_height="@dimen/icon_size"
                 android:layout_margin="@dimen/default_margin"
+                android:layout_gravity="center_vertical"
                 android:src="@drawable/ic_close_black_24dp"/>
     </LinearLayout>
 
@@ -33,13 +36,16 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:scaleType="centerCrop"
             tools:src="@tools:sample/avatars"/>
 
     <TextView
             android:id="@+id/year"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginEnd="@dimen/default_margin"
             style="@style/Text.BodyPrimary"
             tools:text="2018"/>
 

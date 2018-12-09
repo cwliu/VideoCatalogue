@@ -5,6 +5,7 @@
     <color name="colorPrimaryLight">#919191</color>
     <color name="colorAccent">#f8a521</color>
 
-    <color name="primaryTextColor">#0e0f12</color>
+    <color name="headerTextColor">#101010</color>
+    <color name="primaryTextColor">#363636</color>
     <color name="white">#FFFFFF</color>
 </resources>

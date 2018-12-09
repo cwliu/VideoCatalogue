@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!--TODO dimen-->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:orientation="vertical"
-              tools:ignore="UseCompoundDrawables">
+<LinearLayout
+        android:id="@+id/videoCell"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="UseCompoundDrawables">
 
     <ImageView
             android:id="@+id/image"
@@ -17,9 +18,11 @@
 
     <TextView
             android:id="@+id/title"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/cover_image_portrait_width"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_margin"
+            android:maxLines="1"
+            android:ellipsize="end"
             style="@style/Text.BodyPrimary"
             tools:text="Toy Story"/>
 </LinearLayout>

@@ -3,6 +3,7 @@ package com.codylab.videocatalogue.detail
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
+import android.content.res.Configuration.ORIENTATION_LANDSCAPE
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -65,7 +66,13 @@ class DetailFragment : DaggerFragment() {
         viewModel.uiModelLiveData.observe(this, Observer<DetailUIModel> { model ->
             model?.item?.let {
                 name.text = it.title
-                image.loadImageFromUrl(it.images.landscape)
+
+                val imageUrl = if (resources.configuration.orientation == ORIENTATION_LANDSCAPE) {
+                    it.images.landscape
+                } else {
+                    it.images.portrait
+                }
+                image.loadImageFromUrl(imageUrl)
                 year.text = it.year.toString()
                 description.text = it.description
             }

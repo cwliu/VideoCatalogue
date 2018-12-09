@@ -10,15 +10,13 @@
     <style name="Text">
         <item name="android:textColor">@color/primaryTextColor</item>
     </style>
-    <style name="Text.Hero">
-        <item name="android:textSize">56sp</item>
-    </style>
 
     <style name="Text.Header">
-        <item name="android:textSize">36sp</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/headerTextColor</item>
     </style>
 
     <style name="Text.BodyPrimary">
-        <item name="android:textSize">22sp</item>
+        <item name="android:textSize">16sp</item>
     </style>
 </resources>
