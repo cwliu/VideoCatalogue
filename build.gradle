@@ -37,7 +37,7 @@ buildscript {
         googlePlayServiceLocationVersion = "16.0.0"
 
         junitVersion = "4.12"
-        espressoCore = "3.1.0"
+        espressoVersion = "3.1.0"
         testRunnerVersion = "1.1.0"
         mockitoCoreVersion = "2.23.0"
         mockitoInlineVersion = "2.13.0"
