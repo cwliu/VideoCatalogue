@@ -45,7 +45,7 @@ class CatalogueViewModelTest {
     }
 
     @Test
-    fun `Load data successfully`() = runBlocking {
+    fun loadDataSuccessfully() = runBlocking {
         // Given
         val expectedCategories = TestDataUtils.getSampleCategories()
         val viewModel = CatalogueViewModel(catalogueRepository, dispatchManager)
@@ -69,7 +69,7 @@ class CatalogueViewModelTest {
     }
 
     @Test
-    fun `Load data failed`() = runBlocking {
+    fun loadDataFailed() = runBlocking {
         // Given
         whenever(catalogueRepository.getCategories()).thenThrow(IllegalStateException("Drill"))
 
