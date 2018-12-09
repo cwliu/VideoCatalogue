@@ -9,12 +9,17 @@ import javax.inject.Inject
 class DetailViewModel @Inject constructor(): ViewModel() {
 
     var uiModelLiveData = MutableLiveData<DetailUIModel>()
+    val currentUIModel = DetailUIModel()
 
-    fun setup(item: Item) {
-        uiModelLiveData.value = DetailUIModel(item)
+    fun onLoad(item: Item) {
+        uiModelLiveData.value = currentUIModel.apply {
+            this.item = item
+        }.copy()
     }
 
     fun onClosedButtonClicked() {
-        uiModelLiveData.value = DetailUIModel(closeEvent = Event(Unit))
+        uiModelLiveData.value = currentUIModel.apply {
+            closeEvent = Event(Unit)
+        }.copy()
     }
 }

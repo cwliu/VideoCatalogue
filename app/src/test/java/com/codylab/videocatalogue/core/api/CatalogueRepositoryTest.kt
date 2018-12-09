@@ -22,6 +22,9 @@ class CatalogueRepositoryTest {
     @Mock
     lateinit var dispatcherManager: DispatcherManager
 
+    @Mock
+    lateinit var categoryOrderRepository: CategoryOrderRepository
+
     @ExperimentalCoroutinesApi
     @Test
     fun getCategories() = runBlocking {
@@ -30,7 +33,11 @@ class CatalogueRepositoryTest {
         val expectedCategories = TestDataUtils.getSampleCategories()
         val deferredCategories = async { expectedCategories }
         whenever(catalogueAPI.getCategories()).thenReturn(deferredCategories)
-        val catalogueRepository = CatalogueRepository(catalogueAPI, dispatcherManager)
+        val catalogueRepository = CatalogueRepository(
+            catalogueAPI,
+            dispatcherManager,
+            categoryOrderRepository
+        )
 
         // Given
         val actualCategories = catalogueRepository.getCategories()

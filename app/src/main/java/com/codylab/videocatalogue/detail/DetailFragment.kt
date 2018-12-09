@@ -44,7 +44,7 @@ class DetailFragment : DaggerFragment() {
         viewModel = getViewModel(viewModelFactory)
         val item = arguments?.getParcelable<Item>(ITEM_KEY)
         item?.let {
-            viewModel.setup(item)
+            viewModel.onLoad(item)
         }
     }
 

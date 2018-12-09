@@ -23,14 +23,14 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner::class)
 class CatalogueViewModelTest {
 
+    @get:Rule
+    var rule: TestRule = InstantTaskExecutorRule()
+
     @Mock
     lateinit var catalogueRepository: CatalogueRepository
 
     @Mock
     lateinit var dispatchManager: DispatcherManager
-    @get:Rule
-    var rule: TestRule = InstantTaskExecutorRule()
-
 
     private lateinit var viewModel: CatalogueViewModel
 
