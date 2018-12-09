@@ -22,7 +22,9 @@ class MainActivity : AppCompatActivity(), DetailFragmentNavigator {
 
     override fun openDetailFragment(item: Item) {
         val fragment = DetailFragment.newInstance(item)
-        supportFragmentManager.beginTransaction()
+        supportFragmentManager
+            .beginTransaction()
+            .setCustomAnimations(R.anim.fade_out, R.anim.fade_in)
             .add(R.id.fragment, fragment)
             .addToBackStack(null)
             .commit()
