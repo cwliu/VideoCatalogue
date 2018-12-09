@@ -16,7 +16,7 @@ class CatalogueRepository @Inject constructor(
     suspend fun getCategories(): List<Category> {
         return withContext(dispatcherManager.io) {
             catalogueAPI.getCategories().await().sortedWith(compareBy {
-                categoryOrderRepository.getCategoryOrder(it)
+                categoryOrderRepository.getCategoryOrder(it.category)
             })
         }
     }
