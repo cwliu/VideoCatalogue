@@ -9,12 +9,15 @@ import javax.inject.Singleton
 @Singleton
 class CatalogueRepository @Inject constructor(
     private val catalogueAPI: CatalogueAPI,
-    private val dispatcherManager: DispatcherManager
+    private val dispatcherManager: DispatcherManager,
+    private val categoryOrderRepository: CategoryOrderRepository
 ) {
 
     suspend fun getCategories(): List<Category> {
         return withContext(dispatcherManager.io) {
-            catalogueAPI.getCategories().await()
+            catalogueAPI.getCategories().await().sortedWith(compareBy {
+                categoryOrderRepository.getCategoryOrder(it)
+            })
         }
     }
 }
