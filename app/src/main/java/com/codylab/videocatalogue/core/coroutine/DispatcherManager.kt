@@ -6,7 +6,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class DispatcherManager @Inject constructor(){
+class DispatcherManager @Inject constructor() {
     val main: CoroutineDispatcher = Dispatchers.Main
     val io: CoroutineDispatcher = Dispatchers.IO
 }

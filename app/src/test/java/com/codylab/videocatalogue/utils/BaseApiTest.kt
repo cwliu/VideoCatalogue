@@ -23,7 +23,6 @@ open class BaseApiTest {
         return apiAdapter.create(apiClass)
     }
 
-
     @Before
     fun setUp() {
         server = MockWebServer()

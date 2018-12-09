@@ -1,4 +1,4 @@
-package com.codylab.videocatalogue.main
+package com.codylab.videocatalogue.detail
 
 import com.codylab.videocatalogue.core.model.Item
 

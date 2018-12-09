@@ -6,7 +6,7 @@ import com.codylab.videocatalogue.core.livedata.Event
 import com.codylab.videocatalogue.core.model.Item
 import javax.inject.Inject
 
-class DetailViewModel @Inject constructor(): ViewModel() {
+class DetailViewModel @Inject constructor() : ViewModel() {
 
     var uiModelLiveData = MutableLiveData<DetailUIModel>()
     val currentUIModel = DetailUIModel()

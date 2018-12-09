@@ -6,6 +6,7 @@ import com.codylab.videocatalogue.R
 import com.codylab.videocatalogue.catalogue.CatalogueFragment
 import com.codylab.videocatalogue.core.model.Item
 import com.codylab.videocatalogue.detail.DetailFragment
+import com.codylab.videocatalogue.detail.DetailFragmentNavigator
 
 
 class MainActivity : AppCompatActivity(), DetailFragmentNavigator {

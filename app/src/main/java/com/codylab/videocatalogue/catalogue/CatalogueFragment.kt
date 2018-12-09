@@ -12,7 +12,7 @@ import com.codylab.videocatalogue.core.extension.getViewModel
 import com.codylab.videocatalogue.core.extension.observeNonNull
 import com.codylab.videocatalogue.core.extension.setVisibility
 import com.codylab.videocatalogue.core.extension.showToast
-import com.codylab.videocatalogue.main.DetailFragmentNavigator
+import com.codylab.videocatalogue.detail.DetailFragmentNavigator
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_catalogue.*
 import javax.inject.Inject
@@ -56,6 +56,7 @@ class CatalogueFragment : DaggerFragment() {
             viewModel.onSwipeRefresh()
         }
     }
+
     private fun observeUI() {
         viewModel.uiModelLiveData.observeNonNull(this) { uiModel ->
 

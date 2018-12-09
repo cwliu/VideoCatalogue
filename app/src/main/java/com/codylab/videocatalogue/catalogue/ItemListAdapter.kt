@@ -14,8 +14,10 @@ enum class ImageOrientation {
     Portrait, Landscape
 }
 
-class ItemListAdapter(private val context: Context,
-                      val imageOrientation: ImageOrientation = ImageOrientation.Portrait) : RecyclerView.Adapter<ItemListAdapter.ViewHolder>() {
+class ItemListAdapter(
+    private val context: Context,
+    val imageOrientation: ImageOrientation = ImageOrientation.Portrait
+) : RecyclerView.Adapter<ItemListAdapter.ViewHolder>() {
 
     val items = mutableListOf<Item>()
 
@@ -36,15 +38,21 @@ class ItemListAdapter(private val context: Context,
             itemView.title.text = item.title
 
             val imageUrl = if (imageOrientation == ImageOrientation.Portrait) {
-                itemView.image.layoutParams.width = view.resources.getDimension(R.dimen.cover_image_portrait_width).toInt()
-                itemView.title.layoutParams.width = view.resources.getDimension(R.dimen.cover_image_portrait_width).toInt()
-                itemView.image.layoutParams.height = view.resources.getDimension(R.dimen.cover_image_portrait_height).toInt()
+                itemView.image.layoutParams.width =
+                        view.resources.getDimension(R.dimen.cover_image_portrait_width).toInt()
+                itemView.title.layoutParams.width =
+                        view.resources.getDimension(R.dimen.cover_image_portrait_width).toInt()
+                itemView.image.layoutParams.height =
+                        view.resources.getDimension(R.dimen.cover_image_portrait_height).toInt()
 
                 item.images.portrait
             } else {
-                itemView.image.layoutParams.width = view.resources.getDimension(R.dimen.cover_image_landscape_width).toInt()
-                itemView.title.layoutParams.width = view.resources.getDimension(R.dimen.cover_image_landscape_width).toInt()
-                itemView.image.layoutParams.height = view.resources.getDimension(R.dimen.cover_image_landscape_height).toInt()
+                itemView.image.layoutParams.width =
+                        view.resources.getDimension(R.dimen.cover_image_landscape_width).toInt()
+                itemView.title.layoutParams.width =
+                        view.resources.getDimension(R.dimen.cover_image_landscape_width).toInt()
+                itemView.image.layoutParams.height =
+                        view.resources.getDimension(R.dimen.cover_image_landscape_height).toInt()
 
                 item.images.landscape
             }

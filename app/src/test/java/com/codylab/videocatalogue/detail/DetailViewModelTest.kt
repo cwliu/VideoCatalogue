@@ -29,7 +29,7 @@ class DetailViewModelTest {
 
         // Then
         val observedValues = testObserver.observedValues
-        Assert.assertEquals( 1, observedValues.size)
+        Assert.assertEquals(1, observedValues.size)
         val loadedEvent = observedValues[0]!!
         Assert.assertNull(loadedEvent.closeEvent)
         Assert.assertEquals(item, loadedEvent.item)
@@ -46,7 +46,7 @@ class DetailViewModelTest {
 
         // Then
         val observedValues = testObserver.observedValues
-        Assert.assertEquals( 1, observedValues.size)
+        Assert.assertEquals(1, observedValues.size)
         val closeEvent = observedValues[0]!!
         Assert.assertNotNull(closeEvent.closeEvent)
         Assert.assertNull(closeEvent.item)

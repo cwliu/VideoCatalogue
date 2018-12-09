@@ -57,7 +57,7 @@ class CatalogueViewModelTest {
 
         // Then
         val observedValues = testObserver.observedValues
-        Assert.assertEquals( 3, observedValues.size)
+        Assert.assertEquals(3, observedValues.size)
         val onLoadingUiModel = observedValues[0]!!
         Assert.assertTrue(onLoadingUiModel.isLoading)
 
@@ -78,7 +78,7 @@ class CatalogueViewModelTest {
 
         // Then
         val observedValues = testObserver.observedValues
-        Assert.assertEquals( 3, observedValues.size)
+        Assert.assertEquals(3, observedValues.size)
         val onLoadingUiModel = observedValues[0]!!
         Assert.assertTrue(onLoadingUiModel.isLoading)
 
