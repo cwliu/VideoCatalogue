@@ -44,7 +44,6 @@ dependencies {
 
     implementation "com.jakewharton.timber:timber:$timberVersion"
 
-    // 1 Add libraries
     // Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
