@@ -16,31 +16,36 @@ class CatalogueViewModel @Inject constructor(
     private val catalogueRepository: CatalogueRepository
     ) : ScopedViewModel(dispatcherManager) {
 
-    private val currentUIModel = CatalogueUIModel()
+    private val uiModel = CatalogueUIModel()
 
     private val _uiModelLiveData = MutableLiveData<CatalogueUIModel>()
     val uiModelLiveData: LiveData<CatalogueUIModel>
         get() = _uiModelLiveData
 
+    private suspend fun updateUiModel(block: suspend (CatalogueUIModel) -> Unit) {
+        block.invoke(uiModel)
+        _uiModelLiveData.value = uiModel.copy()
+    }
+
     fun onLoad() = launch {
-        _uiModelLiveData.value = currentUIModel.apply {
-            isLoading = true
-            hasError = false
-        }.copy()
+        updateUiModel {
+            it.isLoading = true
+            it.hasError = false
+        }
 
         try {
-            _uiModelLiveData.value = currentUIModel.apply {
-                categories = catalogueRepository.getCategories()
-            }.copy()
+            updateUiModel {
+                it.categories = catalogueRepository.getCategories()
+            }
         } catch (t: Throwable) {
-            _uiModelLiveData.value = currentUIModel.apply {
-                message = Event(t.toString())
-                hasError = true
-            }.copy()
+            updateUiModel {
+                it.message = Event(t.toString())
+                it.hasError = true
+            }
         } finally {
-            _uiModelLiveData.value = currentUIModel.apply {
-                isLoading = false
-            }.copy()
+            updateUiModel {
+                it.isLoading = false
+            }
         }
     }
 
