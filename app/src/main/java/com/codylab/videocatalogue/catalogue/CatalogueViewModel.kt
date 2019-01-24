@@ -1,5 +1,6 @@
 package com.codylab.videocatalogue.catalogue
 
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import com.codylab.videocatalogue.core.api.CatalogueRepository
 import com.codylab.videocatalogue.core.coroutine.DispatcherManager
@@ -11,30 +12,33 @@ import javax.inject.Singleton
 
 @Singleton
 class CatalogueViewModel @Inject constructor(
-    val catalogueRepository: CatalogueRepository,
-    var dispatcherManager: DispatcherManager
-) : ScopedViewModel(dispatcherManager) {
+    dispatcherManager: DispatcherManager,
+    private val catalogueRepository: CatalogueRepository
+    ) : ScopedViewModel(dispatcherManager) {
 
-    val uiModelLiveData = MutableLiveData<CatalogueUIModel>()
-    val currentUIModel = CatalogueUIModel()
+    private val currentUIModel = CatalogueUIModel()
+
+    private val _uiModelLiveData = MutableLiveData<CatalogueUIModel>()
+    val uiModelLiveData: LiveData<CatalogueUIModel>
+        get() = _uiModelLiveData
 
     fun onLoad() = launch {
-        uiModelLiveData.value = currentUIModel.apply {
+        _uiModelLiveData.value = currentUIModel.apply {
             isLoading = true
             hasError = false
         }.copy()
 
         try {
-            uiModelLiveData.value = currentUIModel.apply {
+            _uiModelLiveData.value = currentUIModel.apply {
                 categories = catalogueRepository.getCategories()
             }.copy()
         } catch (t: Throwable) {
-            uiModelLiveData.value = currentUIModel.apply {
+            _uiModelLiveData.value = currentUIModel.apply {
                 message = Event(t.toString())
                 hasError = true
             }.copy()
         } finally {
-            uiModelLiveData.value = currentUIModel.apply {
+            _uiModelLiveData.value = currentUIModel.apply {
                 isLoading = false
             }.copy()
         }

@@ -40,7 +40,7 @@ class CatalogueViewModelTest {
     @Before
     fun setUp() {
         whenever(dispatchManager.main).thenReturn(Dispatchers.Unconfined)
-        viewModel = CatalogueViewModel(catalogueRepository, dispatchManager)
+        viewModel = CatalogueViewModel(dispatchManager, catalogueRepository)
         testObserver = viewModel.uiModelLiveData.testObserver()
     }
 
@@ -48,7 +48,7 @@ class CatalogueViewModelTest {
     fun loadDataSuccessfully() = runBlocking {
         // Given
         val expectedCategories = TestDataUtils.getSampleCategories()
-        val viewModel = CatalogueViewModel(catalogueRepository, dispatchManager)
+        val viewModel = CatalogueViewModel(dispatchManager, catalogueRepository)
         val testObserver = viewModel.uiModelLiveData.testObserver()
         whenever(catalogueRepository.getCategories()).thenReturn(expectedCategories)
 
