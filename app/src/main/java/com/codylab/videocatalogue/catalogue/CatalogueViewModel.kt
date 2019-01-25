@@ -19,8 +19,7 @@ class CatalogueViewModel @Inject constructor(
     private val uiModel = CatalogueUIModel()
 
     private val _uiModelLiveData = MutableLiveData<CatalogueUIModel>()
-    val uiModelLiveData: LiveData<CatalogueUIModel>
-        get() = _uiModelLiveData
+    val uiModelLiveData: LiveData<CatalogueUIModel> = _uiModelLiveData
 
     private suspend fun updateUiModel(block: suspend (CatalogueUIModel) -> Unit) {
         block.invoke(uiModel)
