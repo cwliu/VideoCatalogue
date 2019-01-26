@@ -19,17 +19,17 @@ class CatalogueViewModel @Inject constructor(
     private val _uiModelLiveData = MutableLiveData<CatalogueUIModel>()
     val uiModelLiveData: LiveData<CatalogueUIModel> = _uiModelLiveData
 
-    private fun emitUiModel(uiModel: CatalogueUIModel) {
-        _uiModelLiveData.value = uiModel
+    private fun CatalogueUIModel.emit() {
+        _uiModelLiveData.value = this
     }
 
     fun onLoad() = launch {
-        emitUiModel(CatalogueUIModel(isLoading = true))
+        CatalogueUIModel(isLoading = true).emit()
 
         try {
-            emitUiModel(CatalogueUIModel(categories = catalogueRepository.getCategories()))
+            CatalogueUIModel(categories = catalogueRepository.getCategories()).emit()
         } catch (t: Throwable) {
-            emitUiModel(CatalogueUIModel(hasError = true, message = Event(t.toString())))
+            CatalogueUIModel(hasError = true, message = Event(t.toString())).emit()
         }
     }
 
