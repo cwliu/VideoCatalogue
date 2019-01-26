@@ -7,7 +7,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlin.coroutines.CoroutineContext
 
-
 open class ScopedViewModel<T>(private val dispatcher: DispatcherManager) : ViewModel(), CoroutineScope {
     override val coroutineContext: CoroutineContext
         get() = job + dispatcher.main
@@ -20,7 +19,7 @@ open class ScopedViewModel<T>(private val dispatcher: DispatcherManager) : ViewM
         job.cancel()
     }
 
-    private val _uiModelLiveData = MutableLiveData<T>()
+    private val _uiModelLiveData: MutableLiveData<T> = MutableLiveData()
     val uiModelLiveData: LiveData<T> = _uiModelLiveData
 
     fun T.emit() {

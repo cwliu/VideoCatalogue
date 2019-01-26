@@ -15,12 +15,20 @@ class CatalogueViewModel @Inject constructor(
 ) : ScopedViewModel<CatalogueUIModel>(dispatcherManager) {
 
     fun onLoad() = launch {
-        CatalogueUIModel(isLoading = true).emit()
+        CatalogueUIModel(
+            isLoading = true
+        ).emit()
 
         try {
-            CatalogueUIModel(categories = catalogueRepository.getCategories()).emit()
+            CatalogueUIModel(
+                categories = catalogueRepository.getCategories()
+            ).emit()
+
         } catch (t: Throwable) {
-            CatalogueUIModel(hasError = true, message = Event(t.toString())).emit()
+            CatalogueUIModel(
+                hasError = true,
+                message = Event(t.toString())
+            ).emit()
         }
     }
 
