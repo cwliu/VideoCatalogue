@@ -14,37 +14,22 @@ import javax.inject.Singleton
 class CatalogueViewModel @Inject constructor(
     dispatcherManager: DispatcherManager,
     private val catalogueRepository: CatalogueRepository
-    ) : ScopedViewModel(dispatcherManager) {
-
-    private val uiModel = CatalogueUIModel()
+) : ScopedViewModel(dispatcherManager) {
 
     private val _uiModelLiveData = MutableLiveData<CatalogueUIModel>()
     val uiModelLiveData: LiveData<CatalogueUIModel> = _uiModelLiveData
 
-    private suspend fun updateUiModel(block: suspend (CatalogueUIModel) -> Unit) {
-        block.invoke(uiModel)
-        _uiModelLiveData.value = uiModel.copy()
+    private fun emitUiModel(uiModel: CatalogueUIModel) {
+        _uiModelLiveData.value = uiModel
     }
 
     fun onLoad() = launch {
-        updateUiModel {
-            it.isLoading = true
-            it.hasError = false
-        }
+        emitUiModel(CatalogueUIModel(isLoading = true))
 
         try {
-            updateUiModel {
-                it.categories = catalogueRepository.getCategories()
-            }
+            emitUiModel(CatalogueUIModel(categories = catalogueRepository.getCategories()))
         } catch (t: Throwable) {
-            updateUiModel {
-                it.message = Event(t.toString())
-                it.hasError = true
-            }
-        } finally {
-            updateUiModel {
-                it.isLoading = false
-            }
+            emitUiModel(CatalogueUIModel(hasError = true, message = Event(t.toString())))
         }
     }
 
